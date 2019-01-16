@@ -6,7 +6,6 @@ class UserDisplay extends Component {
    this.state = {
      users: []
    }
-   this.getData = this.getData.bind(this)
  }
 
   getData = () => {
@@ -15,13 +14,17 @@ class UserDisplay extends Component {
       return response.json();
     })
     .then(function(myJson) {
-      let data = JSON.parse(JSON.stringify(myJson))
+      let data = JSON.parse(JSON.stringify(myJson)).results
       return data
     })
   }
 
 async componentDidMount(){
   let users = await this.getData()
+  this.setState({
+    users
+  })
+  console.log(this.state.users)
 
 }
 
